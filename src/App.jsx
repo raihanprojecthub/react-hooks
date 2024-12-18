@@ -1,3 +1,4 @@
+import Header from "./components/Header";
 
 function App() {
   const title = "Welcome to My App";
@@ -6,6 +7,7 @@ function App() {
 
   return (
     <div>
+      <Header />
       <h1>{ title }</h1>
       <h1>{ age * 2 }</h1>
       <a href={link}>Go To My Website</a>
