@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Header from "./components/Header";
+import ProductList from "./components/ProductList";
 
 function App() {
   // const [title, setTitle] = useState("Welcome to My App");
@@ -12,6 +13,11 @@ function App() {
     { id: 5, title: 'Product 5', price: 459 },
   ]);
 
+  const deleteProduct = (productId) => {
+    const newProducts = products.filter(product => product.id !== productId);
+    setProducts(newProducts);
+  }
+
   // const changeTitle = () => {
   //   setTitle('Title Changed');
   //   setAge(40);
@@ -20,14 +26,10 @@ function App() {
   return (
     <div>
       <Header />
+      <ProductList products={products} deleteProduct={deleteProduct}/>
       {/* <h1>{ title }</h1>
       <h1>Age: { age }</h1>
       <button onClick={ changeTitle }>Change Title</button> */}
-      <ul>
-        { products.map((product) => (
-          <li key={product.id}>{ product.title } - { product.price } </li>
-        )) }
-      </ul>
     </div>
   )
 }
