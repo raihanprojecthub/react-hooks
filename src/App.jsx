@@ -1,6 +1,9 @@
-import { useState } from "react";
-import Header from "./components/Header";
+import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+// import Header from "./components/Header";
 import ProductList from "./components/ProductList";
+import About from "./components/About";
+import Contact from "./components/Contact";
 
 function App() {
   // const [title, setTitle] = useState("Welcome to My App");
@@ -18,6 +21,12 @@ function App() {
     setProducts(newProducts);
   }
 
+  const [name, setName] = useState('Raihan');
+
+  useEffect (() => {
+    console.log('Use Effect Running');
+  }, [name]);
+
   // const changeTitle = () => {
   //   setTitle('Title Changed');
   //   setAge(40);
@@ -25,8 +34,19 @@ function App() {
 
   return (
     <div>
-      <Header />
-      <ProductList products={products} deleteProduct={deleteProduct}/>
+      <Router>
+        <Routes>
+          <Route path="/" element={<ProductList products={products} deleteProduct={deleteProduct}/>} />
+          <Route path="/about" element={<About/>}/>
+          <Route path="/contact" element={<Contact/>}/>
+        </Routes>
+      </Router>
+      
+      {/* <Header /> */}
+
+      {/* <button onClick={() => setName('Joko')}>Change Name</button>
+      <p>{name}</p> */}
+      
       {/* <h1>{ title }</h1>
       <h1>Age: { age }</h1>
       <button onClick={ changeTitle }>Change Title</button> */}
